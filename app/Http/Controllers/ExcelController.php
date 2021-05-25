@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Exception;
+use Session;
 use Illuminate\Http\Request;
 use App\Exports\TransactionsExport;
 use App\Imports\TransactionsImport;
@@ -25,17 +26,18 @@ class ExcelController extends Controller
         return \Excel::download(new TransactionsExport, 'transactions.'.$type);
     }
 
-    // public function importExcel(Request $request)
-    // {
+     public function importExcel(Request $request)
+     {
 
 
 
-    //     \Excel::import(new TransactionsImport,$request->import_file);
+        Excel::import(new TransactionsImport,$request->import_file);
+    
 
-    //     \Session::put('success',  'Your file is imported successfully in database.');
+       Session::put('success',  'Your file is imported successfully in database.');
 
-    //     return back();
-    // }
+      return back();
+    }
     public function importExcelApi(Request $request)
     {
 

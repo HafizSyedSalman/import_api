@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+    protected $table = 'transactions';
 	protected $fillable = [
         'first_name','last_name','job_title','company',
         'industry','website','number','email',
@@ -16,6 +17,6 @@ class Transaction extends Model
     ];
     use HasFactory;
     public $timestamps = false;
-    protected $table = 'transactions';
+    //protected $table = 'transactions';
     protected $guarded = array();
 }
