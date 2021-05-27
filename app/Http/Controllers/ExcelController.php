@@ -37,7 +37,59 @@ class ExcelController extends Controller
        Session::put('success',  'Your file is imported successfully in database.');
 
       return back();
+    }   
+
+   
+    public function phonebookview(Request $request){
+       
+        $transactions= Transaction::all();
+      
+        
+        
+        return $transactions;
+     
     }
+
+
+
+  // Api Phone Book through Postman params
+     public function phonebook(Request $request){
+                 $transactions = new Transaction;
+                 $transactions->first_name     =    $request->first_name;
+                 $transactions->last_name      =    $request->last_name;
+                 $transactions->job_title      =    $request->job_title;
+                 $transactions->company        =    $request->company;
+                 $transactions->industry       =    $request->industry;
+                 $transactions->website        =    $request->website;
+                 $transactions->number         =    $request->number;
+                 $transactions->email          =    $request->email;
+                 $transactions->address        =    $request->address;
+                 $transactions->postalcode     =    $request->postalcode;
+                 $transactions->city           =    $request->city;
+                 $transactions->province       =    $request->province;
+                 $transactions->country        =    $request->country;
+                 $transactions->description    =    $request->description;
+                 $result = $transactions->save();
+        
+        if ($result){
+            
+            return response()->json([
+                'status'=>200,
+                 'message' => 'Data Iserted successfully.',
+            ], 200);
+            
+        }
+        else{
+            return response()->json([
+                'status'=>400,
+                'message' => 'Some field are not correct.',
+            ], 400);
+           
+        }
+
+    }
+
+    // Excel file Api through body Form Data
     public function importExcelApi(Request $request)
     {
 

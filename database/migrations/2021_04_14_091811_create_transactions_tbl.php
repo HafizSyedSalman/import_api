@@ -15,20 +15,20 @@ class CreateTransactionsTbl extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('job_title');
-            $table->string('company');
-            $table->string('industry');
+            $table->string('first_name')->nullable();
+            $table->string('last_name')->nullable();
+            $table->string('job_title')->nullable();
+            $table->string('company')->nullable();
+            $table->string('industry')->nullable();
             $table->string('website')->nullable();
             $table->string('number')->unique();
             $table->string('email')->unique();
-            $table->string('address');
-            $table->string('postalcode');
-            $table->string('city');
-            $table->string('province');
-            $table->string('country');
-            $table->string('description');
+            $table->string('address')->nullable();
+            $table->string('postalcode')->nullable();
+            $table->string('city')->nullable();
+            $table->string('province')->nullable();
+            $table->string('country')->nullable();
+            $table->string('description')->nullable();
         });
     }
 

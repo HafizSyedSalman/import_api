@@ -19,4 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('importExcel', [ExcelController::class, 'importExcelApi']);
+Route::post('phonebook', [ExcelController::class, 'phonebook']);
+Route::post('phonebookview', [ExcelController::class, 'phonebookview']);
 Route::post('exportExcel', [ExcelController::class, 'exportExcel']);
