@@ -31,29 +31,25 @@ class ExcelController extends Controller
 
 
 
-        Excel::import(new TransactionsImport,$request->import_file);
+                      Excel::import(new TransactionsImport,$request->import_file);
     
 
-       Session::put('success',  'Your file is imported successfully in database.');
+                       Session::put('success',  'Your file is imported successfully in database.');
 
-      return back();
-    }   
+            return back();
+          }   
 
    
-    public function phonebookview(Request $request){
-       
-        $transactions= Transaction::all();
-      
-        
-        
-        return $transactions;
-     
-    }
+    public function phonebookview(Request $request)
+             {
+                    $transactions= Transaction::orderBy('id','DESC')->get();
+                   return $transactions;
+                    }
 
 
 
   // Api Phone Book through Postman params
-     public function phonebook(Request $request){
+    public function phonebook(Request $request){
                  $transactions = new Transaction;
                  $transactions->first_name     =    $request->first_name;
                  $transactions->last_name      =    $request->last_name;

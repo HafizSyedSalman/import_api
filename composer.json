@@ -14,7 +14,9 @@
         "laravel/socialite": "^5.2",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
-        "maatwebsite/excel": "^3.1"
+        "maatwebsite/excel": "^3.1",
+        "oriceon/oauth-5-laravel": "dev-master",
+        "rapidwebltd/php-google-contacts-v3-api": "^2.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

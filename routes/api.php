@@ -3,6 +3,7 @@
 use App\Http\Controllers\ExcelController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::post('importExcel', [ExcelController::class, 'importExcelApi']);
 Route::post('phonebook', [ExcelController::class, 'phonebook']);
-Route::post('phonebookview', [ExcelController::class, 'phonebookview']);
+Route::get('phonebookview', [ExcelController::class, 'phonebookview']);
 Route::post('exportExcel', [ExcelController::class, 'exportExcel']);
+Route::get('contact/import/google', [ContactController::class, 'importGoogleContact']);
