@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-
-class ContactController extends Controller
+use App\Models\Email;
+class EmailController extends Controller
 {
-    public function importGoogleContact(Request $request)
+    public function importGoogleEmail(Request $request)
     {
         // get data from request
         $code = $request->code;
@@ -21,8 +20,15 @@ class ContactController extends Controller
             $token = $googleService->requestAccessToken($code);
     
             // Send a request with it
-            return $result = json_decode($googleService->request('https://www.google.com/m8/feeds/contacts/default/full?alt=json&max-results=400'), true);
-    
+            // $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
+            $result = $googleService->request('https://www.googleapis.com/oauth2/v1/userinfo');
+            
+            //$email = new Email;
+            //$email->given_name  = $result;
+            //$email->save();
+
+
+
             // Going through the array to clear it and create a new clean array with only the email addresses
             $emails = []; // initialize the new array
             foreach ($result['feed']['entry'] as $contact) {
@@ -30,6 +36,11 @@ class ContactController extends Controller
                     $emails[] = $contact['gd$email'][0]['address'];
                 }
             }
+            
+            return $emails->id;
+
+            $email = new Email;
+            $email->id  = $emails->id;
             
             return $emails;
     
@@ -43,5 +54,7 @@ class ContactController extends Controller
             // return to google login url
             return redirect((string)$url);
         }
-    }
+       }
+
+       
 }
