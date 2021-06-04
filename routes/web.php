@@ -22,10 +22,13 @@ Route::get('/', function () {
 
 Route::group(['middleware'=>['auth','admin']], function () {
   Route::get('view', [TransactionController::class, 'view'])->name('view');
+  Route::get('datatable', [TransactionController::class, 'datatable'])->name('datatable');
   Route::get('importExportView',[ExcelController::class,'importExportView'])->name('importExportView');
+  Route::post('add_contact', [TransactionController::class, 'add_contact'])->name('add_contact');
   Route::get('edit/{id}', [TransactionController::class, 'edit'])->name('edit');
-  Route::post('update/{id}', [TransactionController::class, 'update'])->name('update');
+  Route::post('update', [TransactionController::class, 'update'])->name('update');
   Route::get('destroy/{id}', [TransactionController::class, 'destroy'])->name('destroy');
+  Route::post('delete', [TransactionController::class, 'delete'])->name('delete');
     });
 
 

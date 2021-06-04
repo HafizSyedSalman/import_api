@@ -27,7 +27,7 @@ class LoginController extends Controller
     protected function redirectTo()
     {
         if (Auth::user()->usertype == 'admin') {
-            return '/importExportView';
+            return '/datatable';
         } else {
             return ('/home');
         

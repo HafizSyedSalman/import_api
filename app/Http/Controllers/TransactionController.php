@@ -7,21 +7,50 @@ use App\Http\Controllers\Controller;
 
 class TransactionController extends Controller
 {
-    public function view()
-    {
-        $transactions= Transaction::all();
+    public function view(){
 
+        $transactions= Transaction::all();
         return view('admin/view')->with('transactions', $transactions);
     }
-     public function edit(Request $request,$id)
-    {
-    	
-        $transactions=Transaction::findorfail($id);
-        return view('admin/edit')->with('transactions', $transactions);
+
+    public function datatable(){
+
+        $transactions= Transaction::all();
+        return view('admin/datatable')->with('transactions', $transactions);
+    }
+     
+    public function add_contact(Request $request) {
+        $transactions= new Transaction;
+        $transactions->first_name     =    $request->first_name;
+        $transactions->last_name      =    $request->last_name;
+        $transactions->job_title      =    $request->job_title;
+        $transactions->company        =    $request->company;
+        $transactions->industry       =    $request->industry;
+        $transactions->website        =    $request->website;
+        $transactions->number         =    $request->number;
+        $transactions->email          =    $request->email;
+        $transactions->address        =    $request->address;
+        $transactions->postalcode     =    $request->postalcode;
+        $transactions->city           =    $request->city;
+        $transactions->province       =    $request->province;
+        $transactions->country        =    $request->country;
+        $transactions->description    =    $request->description;
+        $transactions->save();
+        return redirect()->back();
 
     }
-     public function update(Request $request, $id)
-    {
+
+
+
+    public function edit($id){
+    	
+        $transactions=Transaction::findorfail($id);
+        return $transactions;
+
+    }
+    public function update(Request $request){
+       
+        $id = $request->id;
         $transactions = Transaction::findorfail($id);
         $transactions->first_name     =    $request->first_name;
         $transactions->last_name      =    $request->last_name;
@@ -37,21 +66,21 @@ class TransactionController extends Controller
         $transactions->province       =    $request->province;
         $transactions->country        =    $request->country;
         $transactions->description    =    $request->description;
-                   
-                   
-
         $transactions->update();
-        return redirect('admin/view');
+        return redirect()->back();
     }
 
-     public function destroy(Request $request, $id)
-    {
-        $transactions=Transaction::findorfail($id)->delete();
-        return redirect('/view')->with('status', "Record Updated Successfully");
+    public function destroy($id){
+    	
+        $transactions=Transaction::findorfail($id);
+        return $transactions;
 
-       
-
-
-}
+    }
+     public function delete(Request $request){
+        $id = $request->id;
+        $transactions=Transaction::findorfail($id);
+        $transactions->delete();
+        return redirect()->back();
+    }
 
 }

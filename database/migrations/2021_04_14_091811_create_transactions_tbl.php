@@ -21,8 +21,8 @@ class CreateTransactionsTbl extends Migration
             $table->string('company')->nullable();
             $table->string('industry')->nullable();
             $table->string('website')->nullable();
-            $table->string('number')->unique();
-            $table->string('email')->unique();
+            $table->string('number')->unique()->nullable();;
+            $table->string('email')->nullable();;
             $table->string('address')->nullable();
             $table->string('postalcode')->nullable();
             $table->string('city')->nullable();

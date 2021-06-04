@@ -20,7 +20,8 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-      <center><h1>Transaction Record</h1></center>
+      <center><h1>Contact All Record</h1></center>
+      <a href="datatable"><h1><b>Back</b></h1></a>
       <center><table style="width:0%">
 
         
@@ -42,7 +43,7 @@ tr:nth-child(even) {
                 <th><h3>Description</h3></th>
                 <th><h3>Created_at</h3></th>
                 <th><h3>Updated_at</h3></th>
-                <th colspan="2"><h3>Action</h3></th>
+                <!-- <th colspan="2"><h3>Action</h3></th> -->
             </tr>
         </th>
         <tbody>
@@ -67,8 +68,8 @@ tr:nth-child(even) {
                 <td>{{ $transaction->created_at }}</td>
                 <td>{{ $transaction->updated_at }}</td>
                
-                <td><a href="edit/{{$transaction->id}}"><b>Edit</b></a></td>
-                <td><a href="destroy/{{$transaction->id}}"><b>Delete</b></a></td>
+                <!-- <td><a href="edit/{{$transaction->id}}"><b>Edit</b></a></td> -->
+                <!-- <td><a href="destroy/{{$transaction->id}}"><b>Delete</b></a></td> -->
 
             </tr> 
             @endforeach
