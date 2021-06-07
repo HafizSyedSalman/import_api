@@ -14,8 +14,9 @@ class CreateEmailInfoTable extends Migration
     public function up()
     {
         Schema::create('email_info', function (Blueprint $table) {
-            $table->Biginteger('id')->nullable();
-            $table->string('email')->unique();
+            $table->id();
+            $table->integer('gmail_id');
+            $table->string('email')->nullable();
             $table->string('verified_email')->nullable();
             $table->string('name')->nullable();
             $table->string('given_name')->nullable();

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\TransactionController;
+//use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,8 @@ Route::get('/', function () {
 
 
 Route::group(['middleware'=>['auth','admin']], function () {
-  Route::get('view', [TransactionController::class, 'view'])->name('view');
+  //Route::get('view', [TransactionController::class, 'view'])->name('view');
+  Route::get('user_record/{id}', [TransactionController::class, 'user_record'])->name('user_record');
   Route::get('datatable', [TransactionController::class, 'datatable'])->name('datatable');
   Route::get('importExportView',[ExcelController::class,'importExportView'])->name('importExportView');
   Route::post('add_contact', [TransactionController::class, 'add_contact'])->name('add_contact');
@@ -67,5 +69,7 @@ Route::get('login/twitter/callback', [App\Http\Controllers\Auth\LoginController:
 //Login GitHub
 Route::get('login/github', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGithub'])->name('login.github');
 Route::get('login/github/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGithubCallback']);
+
+Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 

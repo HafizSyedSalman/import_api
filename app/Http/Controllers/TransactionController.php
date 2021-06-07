@@ -13,9 +13,18 @@ class TransactionController extends Controller
         return view('admin/view')->with('transactions', $transactions);
     }
 
+   public function  user_record($id) {
+    $transactions= Transaction::findorfail($id);
+    
+    return view('admin/view')->with('transactions', $transactions);
+    
+    // echo "123123";
+    // die();
+
+   }
     public function datatable(){
 
-        $transactions= Transaction::all();
+        $transactions= Transaction::orderBy('id','ASC')->get();
         return view('admin/datatable')->with('transactions', $transactions);
     }
      

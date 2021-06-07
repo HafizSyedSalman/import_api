@@ -20,8 +20,8 @@ tr:nth-child(even) {
 </style>
 </head>
 <body>
-      <center><h1>Contact All Record</h1></center>
-      <a href="datatable"><h1><b>Back</b></h1></a>
+      <center><h1>Contact Record</h1></center>
+      <a href="/import_api/public/datatable"><h1><b>Back</b></h1></a>
       <center><table style="width:0%">
 
         
@@ -43,36 +43,35 @@ tr:nth-child(even) {
                 <th><h3>Description</h3></th>
                 <th><h3>Created_at</h3></th>
                 <th><h3>Updated_at</h3></th>
-                <!-- <th colspan="2"><h3>Action</h3></th> -->
+                
             </tr>
         </th>
         <tbody>
-       @foreach ($transactions as $transaction)
+      
        
             <tr>
-                <td>{{ $transaction->id }}</td>
-                <td>{{ $transaction->first_name }}</td>
-                <td>{{ $transaction->last_name }}</td>
-                <td>{{ $transaction->job_title }}</td>
-                <td>{{ $transaction->company }}</td>
-                <td>{{ $transaction->industry }}</td>
-                <td>{{ $transaction->website }}</td>
-                <td>{{ $transaction->number }}</td>
-                <td>{{ $transaction->email }}</td>
-                <td>{{ $transaction->address }}</td>
-                <td>{{ $transaction->postalcode }}</td>
-                <td>{{ $transaction->city }}</td>
-                <td>{{ $transaction->province }}</td>
-                <td>{{ $transaction->country }}</td>
-                <td>{{ $transaction->description }}</td>
-                <td>{{ $transaction->created_at }}</td>
-                <td>{{ $transaction->updated_at }}</td>
+                <td>{{  $transactions->id }}</td>
+                <td>{{  $transactions->first_name }}</td>
+                <td>{{  $transactions->last_name }}</td>
+                <td>{{  $transactions->job_title }}</td>
+                <td>{{  $transactions->company }}</td>
+                <td>{{  $transactions->industry }}</td>
+                <td>{{  $transactions->website }}</td>
+                <td>{{  $transactions->number }}</td>
+                <td>{{  $transactions->email }}</td>
+                <td>{{  $transactions->address }}</td>
+                <td>{{  $transactions->postalcode }}</td>
+                <td>{{  $transactions->city }}</td>
+                <td>{{  $transactions->province }}</td>
+                <td>{{  $transactions->country }}</td>
+                <td>{{  $transactions->description }}</td>
+                <td>{{  $transactions->created_at }}</td>
+                <td>{{  $transactions->updated_at }}</td>
                
-                <!-- <td><a href="edit/{{$transaction->id}}"><b>Edit</b></a></td> -->
-                <!-- <td><a href="destroy/{{$transaction->id}}"><b>Delete</b></a></td> -->
+               
 
             </tr> 
-            @endforeach
+           
         </tbody>
     </table></center>
 </body>

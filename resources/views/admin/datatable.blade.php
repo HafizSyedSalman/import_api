@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact</title>
+<title>Phone Book</title>
 
  <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -305,7 +306,7 @@ $(document).ready(function(){
 								</div>
 								<div class="col-7 d-flex">
 									<div>
-										<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>+Add New Employee</span></a>
+										<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
 									</div>
 									<div class="dropdown">
 										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -313,20 +314,14 @@ $(document).ready(function(){
 										</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="#importEmployeeModal" data-toggle="modal"><b>Import File</b></a>
-                                          <a class="dropdown-item" href="{{ route('exportExcel', 'xls') }}"><b>Download-Excel xls File</b></a>
+										<a class="dropdown-item" href="#downloadEmployeeModal" data-toggle="modal"><b>Download</b></a>
+                                          <!-- <a class="dropdown-item" href="{{ route('exportExcel', 'xls') }}"><b>Download-Excel xls File</b></a>
 										  <a class="dropdown-item" href="{{ route('exportExcel', 'xlsx') }}"><b>Download-Excel xlsx File</b></a>
-                                          <a class="dropdown-item" href="{{ route('exportExcel', 'csv') }}"><b>Download CSV File</b></a>
+                                          <a class="dropdown-item" href="{{ route('exportExcel', 'csv') }}"><b>Download CSV File</b></a> -->
                                           
 										 
-                                          <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                          <a class="dropdown-item" href="{{ url('logout') }}"> Logout </a>
+                                      
 										</div>
 									  </div>
 								</div>
@@ -379,7 +374,7 @@ $(document).ready(function(){
 							<td>
 								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" data-attr="{{route('edit',$transaction->id)}}" id="editRecord" title="Edit">&#xE254;</i></a>
 								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" data-attr="{{route('destroy',$transaction->id)}}" id="deleteRecord" title="Delete">&#xE872;</i></a>
-								<a href="{{route('view')}}" class="view">&#xE872;</i></a>
+								<a href="{{route('user_record',$transaction->id)}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
 							</td>
 						</tr>
                         @endforeach
@@ -402,7 +397,7 @@ $(document).ready(function(){
     </div>
 	<!-- Add Modal HTML -->
 	<div id="addEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-centered modal-lg" style="max-width: 80%;">
 			<div class="modal-content">
 				<form  action="add_contact" method="POST">
 				@csrf
@@ -410,63 +405,69 @@ $(document).ready(function(){
 						<h4 class="modal-title">Add Contact</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
-						<div class="form-group">
+					<div class="modal-body">
+					<div class="row">
+					<div class="col-6">
+					<div class="form-group">
 							<label>FirstName</label>
 							<input type="text" name="first_name"  class="form-control" required>
 						</div>
 						<div class="form-group">
-							<label>LastName</label>
-							<input type="text" name="last_name" class="form-control" required>
-						</div>
-                        <div class="form-group">
 							<label>Job Title</label>
 							<input type="text" name="job_title" class="form-control" required>
 						</div>
-                        <div class="form-group">
-							<label>Company</label>
-							<input type="text" name="company" class="form-control" required>
-						</div>
-                        <div class="form-group">
+						<div class="form-group">
 							<label>Industry</label>
 							<input type="text" name="industry" class="form-control" required>
 						</div>
-                        <div class="form-group">
-							<label>Website</label>
-							<input type="text" name="website" class="form-control" required>
-						</div>
-                        <div class="form-group">
+						<div class="form-group">
 							<label>Number</label>
 							<input type="text" name="number" class="form-control" required>
 						</div>
-                        <div class="form-group">
-							<label>Email</label>
-							<input type="email" name="email"  class="form-control" required>
-						</div>
-                        <div class="form-group">
+						<div class="form-group">
 							<label>Address</label>
 							<textarea  name="address"  class="form-control" required></textarea>
-						</div>
-                        <div class="form-group">
-							<label>PostalCode</label>
-							<input type="text" name="postalcode" class="form-control" required>
 						</div>
 						<div class="form-group">
 							<label>City</label>
 							<input type="text" name="city" class="form-control" required>
 						</div>
 						<div class="form-group">
+							<label>Country</label>
+							<input type="text" name="country" class="form-control" required>
+						</div>
+					</div>
+					<div class="col-6">
+					<div class="form-group">
+							<label>LastName</label>
+							<input type="text" name="last_name" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Company</label>
+							<input type="text" name="company" class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>Website</label>
+							<input type="text" name="website" class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>Email</label>
+							<input type="email" name="email"  class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>PostalCode</label>
+							<input type="text" name="postalcode" class="form-control" required>
+						</div>
+						<div class="form-group">
 							<label>Province</label>
 							<input type="text" name="province" class="form-control" required>
 						</div>
                         <div class="form-group">
-							<label>Country</label>
-							<input type="text" name="country" class="form-control" required>
-						</div>
-                        <div class="form-group">
 							<label>Description</label>
 							<input type="text" name="description" class="form-control" required>
-						</div>			
+						</div>
+					</div>
+					</div>
 					</div>
 					    <div class="modal-footer">
 						    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
@@ -584,12 +585,53 @@ $(document).ready(function(){
 						<h4 class="modal-title">Import File</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 					</div>
-					<div class="modal-body">					
+					<div class="modal-body d-flex">					
+					<div>
 					{{ csrf_field() }}
 					<input type="file" name="import_file" />
+					</div>
+					<div class="ml-auto">
+					<span><a href="http://localhost/import_api/public/api/contact/import/google"><i class="fab fa-google fa-2x"></i></a></span>
+					<span><a href=""><i class="fab fa-facebook fa-2x"></i></a></span>
+					
+					</div>
+					</div>
 					    <div class="modal-footer">
 						    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
 						    <input type="submit" class="btn btn-success" value="Import File">
+					    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Download Modal HTML -->
+	<div id="downloadEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<form  action="{{ route('exportExcel','xls','xlsx','csv') }}"  >
+			@csrf
+					<div class="modal-header">						
+						<h4 class="modal-title">Download File</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+					<div class="d-flex">
+					<input type="radio" name="select" >
+					<p class="ml-3 mt-1">Download-Excel xlsx File</p>
+					</div>
+					<div class="d-flex">
+					<input type="radio" name="select" >
+					<p class="ml-3 mt-1">Download-Excel xls File</p>
+					</div>
+					<div class="d-flex">
+					<input type="radio" name="select" >
+					<p class="ml-3 mt-1">Download CSV File</p>
+					</div>
+					</div>
+					    <div class="modal-footer">
+						    <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+						    <input type="submit" class="btn btn-success" value="Sumbit File">
 					    </div>
 				</form>
 			</div>

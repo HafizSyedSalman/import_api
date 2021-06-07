@@ -22,27 +22,32 @@ class EmailController extends Controller
             // Send a request with it
             // $result = json_decode($googleService->request('https://www.googleapis.com/oauth2/v1/userinfo'), true);
             $result = $googleService->request('https://www.googleapis.com/oauth2/v1/userinfo');
-            
+            $contacts = json_decode($result,true); 
+           // return $contacts['id'];
             //$email = new Email;
             //$email->given_name  = $result;
             //$email->save();
 
-
+            $emails= New Email;
+            $emails->gmail_id       = $contacts['id'];
+            $emails->email          = $contacts['email'];
+            $emails->verified_email = $contacts['verified_email'];
+            $emails->name           = $contacts['name'];
+            $emails->given_name     = $contacts['given_name'];
+            $emails->family_name    = $contacts['family_name'];
+            $emails->picture        = $contacts['picture'] ;
+            $emails->locale         = $contacts['locale'];
+            $emails->save();
 
             // Going through the array to clear it and create a new clean array with only the email addresses
             $emails = []; // initialize the new array
-            foreach ($result['feed']['entry'] as $contact) {
-                if (isset($contact['gd$email'])) { // Sometimes, a contact doesn't have email address
-                    $emails[] = $contact['gd$email'][0]['address'];
-                }
-            }
+            // foreach ($result  as $contact) {
+            //     if (isset($contact['gd$email'])) { // Sometimes, a contact doesn't have email address
+            //         $emails[] = $contact['gd$email'][0]['address'];
+            //     }
+            // }
             
-            return $emails->id;
-
-            $email = new Email;
-            $email->id  = $emails->id;
-            
-            return $emails;
+        
     
         }
         

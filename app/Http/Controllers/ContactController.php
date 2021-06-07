@@ -35,29 +35,7 @@ class ContactController extends Controller
                     $numbers->save();
                 }
             }
-            
-                // if (isset($contact['gd$email'])) {
-                //     echo'email'.$contact['gd$email'][0]['address']; echo'<br>';
-                // }
-                // if (isset($contact['title'])) {
-                //     echo'name'.$contact['title']['$t']; echo'<br>';
-                // }
-            
-
-            
-
-
-
-           
-            
-            // foreach ($result["feed"]['entry'] as $contact) {
-            //     if (isset($contact['title'])) { // Sometimes, a contact doesn't have email address
-            //         $name[] = $contact['title']['$t'];
-            //     }
-            // }
-            
-            // return [$number,$email,$name];
-    
+                
         }
         
         // if not ask for permission first
