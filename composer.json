@@ -15,8 +15,12 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
         "maatwebsite/excel": "^3.1",
+        "nexmo/client": "^2.4",
+        "nexmo/laravel": "^2.4",
         "oriceon/oauth-5-laravel": "dev-master",
-        "rapidwebltd/php-google-contacts-v3-api": "^2.0"
+        "prawnsalad/nexmo": "dev-master",
+        "rapidwebltd/php-google-contacts-v3-api": "^2.0",
+        "twilio/sdk": "^6.24"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -135,6 +135,7 @@ class LoginController extends Controller
         $user->password      =   Hash::make('123456');
         $user->provider_id   =   $data->id;
         $user->avatar        =   $data->avatar;
+        
         $user->save();
     }
     Auth::login($user);

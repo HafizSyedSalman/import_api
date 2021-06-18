@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Exception;
 use Session;
+use Auth;
 use Illuminate\Http\Request;
 use App\Exports\TransactionsExport;
 use App\Imports\TransactionsImport;
@@ -26,18 +27,21 @@ class ExcelController extends Controller
         return \Excel::download(new TransactionsExport, 'transactions.'.$type);
     }
 
-     public function importExcel(Request $request)
-     {
+             public function importExcel(Request $request) {
+                 $user_id = auth()->user()->id;        
+                 Excel::import(new TransactionsImport($user_id), request()->file('import_file'));
 
+                 Session::put('success',  'Your file is imported successfully in database.');
+                 return back();
+    }
 
-
-                      Excel::import(new TransactionsImport,$request->import_file);
-    
-
-                       Session::put('success',  'Your file is imported successfully in database.');
-
-            return back();
-          }   
+    //  public function importExcel(Request $request)
+    //  {
+    //                  $transactions=Auth::user()->userid;
+    //                   Excel::import(new TransactionsImport,$request->import_file);
+    //                    Session::put('success',  'Your file is imported successfully in database.');
+    //         return back();
+    //       }   
 
    
     public function phonebookview(Request $request)

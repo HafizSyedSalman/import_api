@@ -306,7 +306,7 @@ $(document).ready(function(){
 								</div>
 								<div class="col-7 d-flex">
 									<div>
-										<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
+										<a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Contacts</span></a>
 									</div>
 									<div class="dropdown">
 										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -315,9 +315,9 @@ $(document).ready(function(){
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="#importEmployeeModal" data-toggle="modal"><b>Import File</b></a>
 										<a class="dropdown-item" href="#downloadEmployeeModal" data-toggle="modal"><b>Download</b></a>
-                                          <!-- <a class="dropdown-item" href="{{ route('exportExcel', 'xls') }}"><b>Download-Excel xls File</b></a>
-										  <a class="dropdown-item" href="{{ route('exportExcel', 'xlsx') }}"><b>Download-Excel xlsx File</b></a>
-                                          <a class="dropdown-item" href="{{ route('exportExcel', 'csv') }}"><b>Download CSV File</b></a> -->
+										<a class="dropdown-item" href="#sendEmailEmployeeModal" data-toggle="modal"><b>Send Email</b></a>
+										
+								
                                           
 										 
                                           <a class="dropdown-item" href="{{ url('logout') }}"> Logout </a>
@@ -380,9 +380,10 @@ $(document).ready(function(){
                         @endforeach
 					</tbody>
 				</table>
-				<div class="clearfix">
-					<div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-					<ul class="pagination">
+				<div class="d-flex justify-content-center">
+				{!! $transactions->links() !!}
+					<!-- <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+					<ul class="pagination"> 
 						<li class="page-item disabled"><a href="#">Previous</a></li>
 						<li class="page-item"><a href="#" class="page-link">1</a></li>
 						<li class="page-item"><a href="#" class="page-link">2</a></li>
@@ -390,7 +391,7 @@ $(document).ready(function(){
 						<li class="page-item"><a href="#" class="page-link">4</a></li>
 						<li class="page-item"><a href="#" class="page-link">5</a></li>
 						<li class="page-item"><a href="#" class="page-link">Next</a></li>
-					</ul>
+						</ul> -->
 				</div>
 			</div>
 		</div>        
@@ -401,6 +402,7 @@ $(document).ready(function(){
 			<div class="modal-content">
 				<form  action="add_contact" method="POST">
 				@csrf
+				<input type="hidden" name="user_id" value="{{auth()->user()->id}}">
 					<div class="modal-header">						
 						<h4 class="modal-title">Add Contact</h4>
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -410,61 +412,61 @@ $(document).ready(function(){
 					<div class="col-6">
 					<div class="form-group">
 							<label>FirstName</label>
-							<input type="text" name="first_name"  class="form-control" required>
+							<input type="text" name="first_name"  class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Job Title</label>
-							<input type="text" name="job_title" class="form-control" required>
+							<input type="text" name="job_title" class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Industry</label>
-							<input type="text" name="industry" class="form-control" required>
+							<input type="text" name="industry" class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Number</label>
-							<input type="text" name="number" class="form-control" required>
+							<input type="text" name="number" class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Address</label>
-							<textarea  name="address"  class="form-control" required></textarea>
+							<textarea  name="address"  class="form-control" ></textarea>
 						</div>
 						<div class="form-group">
 							<label>City</label>
-							<input type="text" name="city" class="form-control" required>
+							<input type="text" name="city" class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Country</label>
-							<input type="text" name="country" class="form-control" required>
+							<input type="text" name="country" class="form-control" >
 						</div>
 					</div>
 					<div class="col-6">
 					<div class="form-group">
 							<label>LastName</label>
-							<input type="text" name="last_name" class="form-control" required>
+							<input type="text" name="last_name" class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Company</label>
-							<input type="text" name="company" class="form-control" required>
+							<input type="text" name="company" class="form-control" >
 						</div>
                         <div class="form-group">
 							<label>Website</label>
-							<input type="text" name="website" class="form-control" required>
+							<input type="text" name="website" class="form-control" >
 						</div>
                         <div class="form-group">
 							<label>Email</label>
-							<input type="email" name="email"  class="form-control" required>
+							<input type="email" name="email"  class="form-control" >
 						</div>
                         <div class="form-group">
 							<label>PostalCode</label>
-							<input type="text" name="postalcode" class="form-control" required>
+							<input type="text" name="postalcode" class="form-control" >
 						</div>
 						<div class="form-group">
 							<label>Province</label>
-							<input type="text" name="province" class="form-control" required>
+							<input type="text" name="province" class="form-control" >
 						</div>
                         <div class="form-group">
 							<label>Description</label>
-							<input type="text" name="description" class="form-control" required>
+							<input type="text" name="description" class="form-control" >
 						</div>
 					</div>
 					</div>
@@ -577,7 +579,7 @@ $(document).ready(function(){
 
     <!-- Import Modal HTML -->
 	<div id="importEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 			<form  action="{{ route('importExcel') }}"  method="post" enctype="multipart/form-data">
 			@csrf
@@ -607,7 +609,7 @@ $(document).ready(function(){
 
 	<!-- Download Modal HTML -->
 	<div id="downloadEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 			<form  action="{{ route('exportExcel','xls','xlsx','csv') }}"  >
 			@csrf
@@ -640,6 +642,17 @@ $(document).ready(function(){
 	
 
 
+<!-- Send Email Modal HTML -->
+<div id="sendEmailEmployeeModal" class="modal fade">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+		
+					<center><span><a href="{{url('index')}}"><h3>Send Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
+					
+					
+			</div>
+		</div>
+	</div>
 
 
 	<!-- Optional JavaScript -->

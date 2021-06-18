@@ -12,10 +12,12 @@ class Transaction extends Model
         'first_name','last_name','job_title','company',
         'industry','website','number','email',
         'address','postalcode','city',
-        'province','country','description',
-        
+        'province','country','description','user_id'        
     ];
     use HasFactory;
+    function user(){
+        return $this->belongsTo('App\Models\User');
+    }
     public $timestamps = false;
     //protected $table = 'transactions';
     protected $guarded = array();

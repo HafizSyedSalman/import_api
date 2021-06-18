@@ -2,14 +2,26 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Models\Transaction;
+use Auth;
 class ContactController extends Controller
 {
+
+    use AuthenticatesUsers;
+
     public function importGoogleContact(Request $request)
     {
+
+        // if (Auth::check()) {
+        //     return "User logged , user_id : ".$user ;
+        // }else{
+        //     return "Not logged"; //It is returning this
+        // }
+    
         // get data from request
         $code = $request->code;
-    
+       
         // get google service
         $googleService = \OAuth::consumer('Google');
         
@@ -25,7 +37,7 @@ class ContactController extends Controller
     
             // Going through the array to clear it and create a new clean array with only the email addresses
             $emails = []; // initialize the new array
-            
+           
             foreach ($result["feed"]['entry'] as $contact) {
                 if (isset($contact['gd$phoneNumber'], $contact['title'])) {
                     $numbers = $contact['gd$phoneNumber'][0]['$t'];
@@ -33,8 +45,10 @@ class ContactController extends Controller
                     $numbers->first_name = $contact['title']['$t'];
                     $numbers->number = $contact['gd$phoneNumber'][0]['$t'];
                     $numbers->save();
+            
                 }
             }
+            return redirect('datatable');
                 
         }
         
@@ -48,5 +62,6 @@ class ContactController extends Controller
         }
     
 }
+
         
 }

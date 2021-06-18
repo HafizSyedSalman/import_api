@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ExcelController;
 use App\Http\Controllers\TransactionController;
 //use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\SendMailController;
+//use App\Http\Controllers\SmsController;
+use App\Http\Controllers\BulkSmsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,9 +19,15 @@ use App\Http\Controllers\TransactionController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
+// Route::post('/sms', [SmsController::class, 'sendSms'])->name('sms');
+
+// Route::get('/', function () {
+//   return view('bulksms');
+// });
+// Route::post('/bulksms', [BulkSmsController::class, 'sendSms'])->name('bulksms');
 
 Route::group(['middleware'=>['auth','admin']], function () {
   //Route::get('view', [TransactionController::class, 'view'])->name('view');
@@ -32,25 +40,27 @@ Route::group(['middleware'=>['auth','admin']], function () {
   Route::get('destroy/{id}', [TransactionController::class, 'destroy'])->name('destroy');
   Route::post('delete', [TransactionController::class, 'delete'])->name('delete');
     });
+    Auth::routes();
 
-
-
-
-//Route::get('importExportView',[ExcelController::class,'importExportView'])->name('importExportView');
-
+// <--- Simple User Route---->
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('add_contact', [TransactionController::class, 'add_contact'])->name('add_contact');
+Route::get('edit/{id}', [TransactionController::class, 'edit'])->name('edit');
+Route::post('update', [TransactionController::class, 'update'])->name('update');
 Route::get('exportExcel/{type}', [ExcelController::class, 'exportExcel'])->name('exportExcel');
 // Route for import excel data to database.
 Route::post('importExcel', [ExcelController::class, 'importExcel'])->name('importExcel');
+
+
+//Route::get('importExportView',[ExcelController::class,'importExportView'])->name('importExportView');
 //Route::get('view', [TransactionController::class, 'view'])->name('view');
 //Route::get('edit/{id}', [TransactionController::class, 'edit'])->name('edit');
 //Route::post('update/{id}', [TransactionController::class, 'update'])->name('update');
 //Route::get('destroy/{id}', [TransactionController::class, 'destroy'])->name('destroy');
-Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('send-sms-message', [App\Http\Controllers\MessageController::class, 'sendSmsToMobile'])->name('sendSmsToMobile');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Login Google
 Route::get('login/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
@@ -72,4 +82,7 @@ Route::get('login/github/callback', [App\Http\Controllers\Auth\LoginController::
 
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
-
+// Send Email Route
+Route::get('send/mail', [SendMailController::class, 'send_mail'])->name('send_mail');
+Route::get('/notification', [App\Http\Controllers\SendMailController::class, 'notification'])->name('notification');
+Route::get('/index', [SendMailController::class, 'index'])->name('index');

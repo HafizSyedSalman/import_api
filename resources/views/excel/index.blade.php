@@ -111,6 +111,7 @@
             <br />
             <form style="border: 4px solid #a1a1a1;margin-top: 15px;padding: 10px;" action="{{ route('importExcel') }}"  method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                 <input type="file" name="import_file" />
                 <button class="btn btn-primary" >Import File</button>
             </form>

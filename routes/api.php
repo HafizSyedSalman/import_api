@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,7 +21,9 @@ use App\Http\Controllers\EmailController;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+    
 });
+
 Route::post('importExcel', [ExcelController::class, 'importExcelApi']);
 Route::post('phonebook', [ExcelController::class, 'phonebook']);
 Route::get('phonebookview', [ExcelController::class, 'phonebookview']);

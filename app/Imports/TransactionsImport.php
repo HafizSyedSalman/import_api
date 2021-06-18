@@ -34,6 +34,12 @@ public function customValidationMessages()
     ];
 }
 // End Unique code
+
+public function  __construct($user_id)
+{
+
+    $this->user_id =$user_id;
+}
     public function model(array $row)
     {
         return new Transaction([
@@ -51,6 +57,8 @@ public function customValidationMessages()
             'province'    => $row[11],
             'country'    => $row[12],
             'description'    => $row[13],
+            'user_id'=> $this->user_id,
+            
         ]);
     }
 }

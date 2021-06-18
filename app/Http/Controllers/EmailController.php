@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Email;
 class EmailController extends Controller
 {
+
     public function importGoogleEmail(Request $request)
     {
         // get data from request

@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Artdarek\OAuth\OAuthServiceProvider::class,
+        Nexmo\Laravel\NexmoServiceProvider::class,
+      
         /*
          * Package Service Providers...
          */
@@ -230,6 +232,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'OAuth' => Artdarek\OAuth\Facade\OAuth::class,
+        'Nexmo' => Nexmo\Laravel\Facade\Nexmo::class,
+        
     ],
 
 ];

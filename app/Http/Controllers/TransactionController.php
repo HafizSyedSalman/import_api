@@ -18,18 +18,19 @@ class TransactionController extends Controller
     
     return view('admin/view')->with('transactions', $transactions);
     
-    // echo "123123";
-    // die();
-
+    
    }
     public function datatable(){
 
-        $transactions= Transaction::orderBy('id','ASC')->get();
+        $transactions= Transaction::paginate(6);
+        // ->orderBy('id','ASC')
+        // ->get();
         return view('admin/datatable')->with('transactions', $transactions);
     }
      
     public function add_contact(Request $request) {
         $transactions= new Transaction;
+        $transactions->user_id     =    $request->user_id;
         $transactions->first_name     =    $request->first_name;
         $transactions->last_name      =    $request->last_name;
         $transactions->job_title      =    $request->job_title;
