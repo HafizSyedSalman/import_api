@@ -23,6 +23,7 @@ class SendQueueEmail implements ShouldQueue
     public function __construct($details)
     {
         $this->details = $details;
+        
         //
     }
 
@@ -33,6 +34,7 @@ class SendQueueEmail implements ShouldQueue
      */
     public function handle()
     {
+       
         $data = User::all();
         $input['subject'] = $this->details['subject'];
 

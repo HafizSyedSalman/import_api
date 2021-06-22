@@ -19,6 +19,7 @@
         "nexmo/laravel": "^2.4",
         "oriceon/oauth-5-laravel": "dev-master",
         "prawnsalad/nexmo": "dev-master",
+        "qoraiche/laravel-mail-editor": "^3.2",
         "rapidwebltd/php-google-contacts-v3-api": "^2.0",
         "twilio/sdk": "^6.24"
     },

@@ -83,6 +83,14 @@ Route::get('login/github/callback', [App\Http\Controllers\Auth\LoginController::
 Route::get('logout', [App\Http\Controllers\Auth\LoginController::class, 'logout']);
 
 // Send Email Route
-Route::get('send/mail', [SendMailController::class, 'send_mail'])->name('send_mail');
+Route::get('send/mail', [SendMailController::class, 'send_mail'])->name('send/mail');
+
 Route::get('/notification', [App\Http\Controllers\SendMailController::class, 'notification'])->name('notification');
 Route::get('/index', [SendMailController::class, 'index'])->name('index');
+
+Route::get('emailsetting', [SendMailController::class, 'index'])->name('emailsetting');
+Route::post('setting-store', [SendMailController::class, 'store'])->name('settingStore');
+// Route::post('updateSetting', [SendMailController::class, 'updateSetting'])->name('updateSetting');
+Route::get('sendEmail', [SendMailController::class, 'sendEmailView'])->name('sendEmail');
+Route::post('sendEmail', [SendMailController::class, 'sendEmail'])->name('sendEmail.post');
+Route::get('sendEmailfile', [SendMailController::class, 'sendEmailfile'])->name('sendEmailfilet');

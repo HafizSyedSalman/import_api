@@ -315,7 +315,7 @@ $(document).ready(function(){
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                         <a class="dropdown-item" href="#importEmployeeModal" data-toggle="modal"><b>Import File</b></a>
 										<a class="dropdown-item" href="#downloadEmployeeModal" data-toggle="modal"><b>Download</b></a>
-										<a class="dropdown-item" href="#sendEmailEmployeeModal" data-toggle="modal"><b>Send Email</b></a>
+										<a class="dropdown-item" href="#sendEmailEmployeeModal" data-toggle="modal"><b>Email</b></a>
 										
 								
                                           
@@ -647,7 +647,10 @@ $(document).ready(function(){
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 		
-					<center><span><a href="{{url('index')}}"><h3>Send Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
+					<center><span><a href="{{url('sendEmail')}}"><h3> Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
+					<center><span><a href="{{url('sendEmailfile')}}"><h3>Bulk Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
+ 					<center><span><a href="{{url('')}}"><h3> Email History</h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
+					<center><span><a href="{{url('emailsetting')}}"><h3> Email Setting </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
 					
 					
 			</div>

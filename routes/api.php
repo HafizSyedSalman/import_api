@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
-
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +30,17 @@ Route::get('phonebookview', [ExcelController::class, 'phonebookview']);
 Route::post('exportExcel', [ExcelController::class, 'exportExcel']);
 Route::get('contact/import/google', [ContactController::class, 'importGoogleContact']);
 Route::get('email/import/google', [EmailController::class, 'importGoogleEmail']);
+
+//Google Login
+Route::get('login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('login/google/callback', [LoginController::class, 'handleGoogleCallback']);
+
+
+//Login Facebook
+Route::get('login/facebook', [LoginController::class, 'redirectToFacebook'])->name('login.facebook');
+Route::get('login/facebook/callback', [LoginController::class, 'handleFacebookCallback']);
+
+
+//Login GitHub
+Route::get('login/github', [LoginController::class, 'redirectToGithub'])->name('login.github');
+Route::get('login/github/callback', [LoginController::class, 'handleGithubCallback']);
