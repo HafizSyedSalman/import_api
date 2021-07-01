@@ -8,9 +8,11 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Illuminate\Validation\Rule;
 
-class TransactionsImport implements ToModel,WithValidation,SkipsOnFailure
+class TransactionsImport implements ToModel,WithValidation,SkipsOnFailure,SkipsOnError
 {
     use Importable, SkipsFailures;
     /**
@@ -35,11 +37,7 @@ public function customValidationMessages()
 }
 // End Unique code
 
-public function  __construct($user_id)
-{
 
-    $this->user_id =$user_id;
-}
     public function model(array $row)
     {
         return new Transaction([
@@ -47,18 +45,28 @@ public function  __construct($user_id)
             'last_name'    => $row[1],
             'job_title'    => $row[2],
             'company'    => $row[3],
-             'industry'    => $row[4],
+            'industry'    => $row[4],
             'website'    => $row[5],
             'number'    => $row[6],
             'email'    => $row[7],
             'address'    => $row[8],
             'postalcode'    => $row[9],
-            'city'    => $row[10],
-            'province'    => $row[11],
-            'country'    => $row[12],
-            'description'    => $row[13],
-            'user_id'=> $this->user_id,
+            'zip'    => $row[10],
+            'city'    => $row[11],
+            'group'    => $row[12],
+            'province'    => $row[13],
+            'country'    => $row[14],
+            'description'    => $row[15],
+            'email_access'    => $row[16],
+            'sms_access'    => $row[17],
+            'email_gateway'    => $row[18],
+            'sms_gateway'    => $row[19],
+           
             
         ]);
+    }
+
+    public function onError(Throwable $error){
+
     }
 }

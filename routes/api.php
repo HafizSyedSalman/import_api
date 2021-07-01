@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PhonebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,13 @@ Route::get('phonebookview', [ExcelController::class, 'phonebookview']);
 Route::post('exportExcel', [ExcelController::class, 'exportExcel']);
 Route::get('contact/import/google', [ContactController::class, 'importGoogleContact']);
 Route::get('email/import/google', [EmailController::class, 'importGoogleEmail']);
+Route::post('add_contact', [PhonebookController::class, 'add_contact'])->name('add_contact');
+
+
+
+
+
+
 
 //Google Login
 Route::get('login/google', [LoginController::class, 'redirectToGoogle'])->name('login.google');

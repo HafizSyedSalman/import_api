@@ -27,10 +27,11 @@ class TransactionController extends Controller
         // ->get();
         return view('admin/datatable')->with('transactions', $transactions);
     }
-     
+
+
     public function add_contact(Request $request) {
         $transactions= new Transaction;
-        $transactions->user_id     =    $request->user_id;
+        $transactions->user_id        =    $request->user_id;
         $transactions->first_name     =    $request->first_name;
         $transactions->last_name      =    $request->last_name;
         $transactions->job_title      =    $request->job_title;
@@ -46,7 +47,7 @@ class TransactionController extends Controller
         $transactions->country        =    $request->country;
         $transactions->description    =    $request->description;
         $transactions->save();
-        return redirect()->back();
+        return redirect('datatable');
 
     }
 
@@ -90,7 +91,7 @@ class TransactionController extends Controller
         $id = $request->id;
         $transactions=Transaction::findorfail($id);
         $transactions->delete();
-        return redirect()->back();
+        return redirect('datatable');
     }
 
 }

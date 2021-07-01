@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Mail;
+use App\Models\Bulkemail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,6 +19,16 @@ class SendMailController extends Controller
     public function sendEmailfile()
     {
         return view('mail/sendEmailfile');
+    }
+
+     public function bulkemailuser()
+    {
+        // $user= Auth::user();
+        
+        $bulkemail = Bulkemail::all();
+        return view('mail/bulkemail', ['bulkemail'=>$bulkemail]);
+    // }
+    //     return view('mail/bulkemail');
     }
  
     public function sendEmailView()

@@ -7,6 +7,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\SendMailController;
 //use App\Http\Controllers\SmsController;
 use App\Http\Controllers\BulkSmsController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,13 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
+// Route::get('/dashboards', function () {
+//   return  view('admin.dashboard');
+// });
+Route::get('/add_client', function () {
+  return  view('admin.add_client');
+});
+
 // Route::post('/sms', [SmsController::class, 'sendSms'])->name('sms');
 
 // Route::get('/', function () {
@@ -33,6 +41,7 @@ Route::group(['middleware'=>['auth','admin']], function () {
   //Route::get('view', [TransactionController::class, 'view'])->name('view');
   Route::get('user_record/{id}', [TransactionController::class, 'user_record'])->name('user_record');
   Route::get('datatable', [TransactionController::class, 'datatable'])->name('datatable');
+
   Route::get('importExportView',[ExcelController::class,'importExportView'])->name('importExportView');
   Route::post('add_contact', [TransactionController::class, 'add_contact'])->name('add_contact');
   Route::get('edit/{id}', [TransactionController::class, 'edit'])->name('edit');
@@ -94,3 +103,29 @@ Route::post('setting-store', [SendMailController::class, 'store'])->name('settin
 Route::get('sendEmail', [SendMailController::class, 'sendEmailView'])->name('sendEmail');
 Route::post('sendEmail', [SendMailController::class, 'sendEmail'])->name('sendEmail.post');
 Route::get('sendEmailfile', [SendMailController::class, 'sendEmailfile'])->name('sendEmailfilet');
+Route::get('bulkemail', [SendMailController::class, 'bulkemailuser'])->name('bulkemail');
+Route::post('Bulkemailimport', [ExcelController::class, 'Bulkemailimport'])->name('Bulkemailimport');
+Auth::routes();
+// Admin Dashboard
+Route::get('dashboards', [DashboardController::class, 'dashboards'])->name('dashboards');
+
+//Clients Route
+
+Route::get('add_client', [DashboardController::class, 'add_client'])->name('add_client');
+Route::post('store', [DashboardController::class, 'store'])->name('store');
+Route::get('all_client', [DashboardController::class, 'all_client'])->name('all_client');
+Route::get('import_client', [DashboardController::class, 'import_client'])->name('import_client');
+Route::get('edit_client/{id}', [DashboardController::class, 'edit_client'])->name('edit_client');
+Route::post('update_client', [DashboardController::class, 'update_client'])->name('update_client');
+Route::get('destroy/{id}', [DashboardController::class, 'destroy'])->name('destroy');
+
+// Route::get('datatable', [TransactionController::class, 'datatable'])->name('datatable');
+
+// Groups Side
+
+Route::get('add_group', [DashboardController::class, 'add_group'])->name('add_group');
+Route::post('store_group', [DashboardController::class, 'store_group'])->name('store_group');
+Route::get('all_group', [DashboardController::class, 'all_group'])->name('all_group');
+Route::get('edit_group/{id}', [DashboardController::class, 'edit_group'])->name('edit_group');
+Route::post('update_group', [DashboardController::class, 'update_group'])->name('update_group');
+Route::get('delete/{id}', [DashboardController::class, 'delete'])->name('delete');

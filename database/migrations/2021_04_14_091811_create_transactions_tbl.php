@@ -21,16 +21,24 @@ class CreateTransactionsTbl extends Migration
             $table->string('company')->nullable();
             $table->string('industry')->nullable();
             $table->string('website')->nullable();
-            $table->string('number')->unique()->nullable();;
-            $table->string('email')->nullable();;
+            $table->string('number')->unique()->nullable();
+            $table->string('email')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('postalcode')->nullable();
+            $table->string('zip')->nullable();
             $table->string('city')->nullable();
+            $table->string('group')->nullable();
             $table->string('province')->nullable();
             $table->string('country')->nullable();
             $table->string('description')->nullable();
+            $table->string('email_access')->nullable();
+            $table->string('sms_access')->nullable();
+            $table->string('email_gateway')->nullable();
+            $table->string('sms_gateway')->nullable();
+            $table->timestamps();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
     }
 

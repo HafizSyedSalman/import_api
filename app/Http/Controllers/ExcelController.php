@@ -1,16 +1,17 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\Transaction;
+use App\Models\Bulkemail;
 use Exception;
 use Session;
 use Auth;
 use Illuminate\Http\Request;
 use App\Exports\TransactionsExport;
 use App\Imports\TransactionsImport;
+use App\Imports\BulkemailImport;
 use Maatwebsite\Excel\Facades\Excel;
-//use Maatwebsite\Excel\Concerns\SkipsOnFailure;
-//use Maatwebsite\Excel\Concerns\SkipsFailures;
+// use Maatwebsite\Excel\Concerns\SkipsOnFailure;
+// use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Illuminate\Validation\Rule;
 
 class ExcelController extends Controller
@@ -28,12 +29,21 @@ class ExcelController extends Controller
     }
 
              public function importExcel(Request $request) {
-                 $user_id = auth()->user()->id;        
-                 Excel::import(new TransactionsImport($user_id), request()->file('import_file'));
+                 // $user_id = auth()->user()->id;        
+                 Excel::import(new TransactionsImport, request()->file('import_file'));
 
                  Session::put('success',  'Your file is imported successfully in database.');
                  return back();
     }
+
+
+     public function Bulkemailimport(Request $request) {
+        // $user_id = auth()->user()->id;        
+        Excel::import(new BulkemailImport, request()->file('import_file'));
+
+        Session::put('success',  'Your file is imported successfully in database.');
+        return back();
+}
 
     //  public function importExcel(Request $request)
     //  {

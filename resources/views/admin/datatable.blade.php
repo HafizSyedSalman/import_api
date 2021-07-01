@@ -589,7 +589,6 @@ $(document).ready(function(){
 					</div>
 					<div class="modal-body d-flex">					
 					<div>
-					{{ csrf_field() }}
 					<input type="file" name="import_file" />
 					</div>
 					<div class="ml-auto">
@@ -648,7 +647,7 @@ $(document).ready(function(){
 			<div class="modal-content">
 		
 					<center><span><a href="{{url('sendEmail')}}"><h3> Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
-					<center><span><a href="{{url('sendEmailfile')}}"><h3>Bulk Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
+					<center><span><a href="{{url('bulkemail')}}"><h3>Bulk Email </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
  					<center><span><a href="{{url('')}}"><h3> Email History</h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
 					<center><span><a href="{{url('emailsetting')}}"><h3> Email Setting </h3><i class="fas fa-envelope fa-2x"></i></a></span></center>
 					

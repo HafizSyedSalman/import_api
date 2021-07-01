@@ -29,10 +29,16 @@ class TransactionsExport implements FromCollection, WithHeadings, WithMapping
             'Email',
             'Address',
             'Postalcode',
-            'city',
-            'province',
+            'Zip',
+            'City',
+            'Group',
+            'Province',
             'country',
             'Description',
+            'Email_access',
+            'Sms_access',
+            'Email_gateway',
+            'Sms_gateway',
         ];
     }
     public function map($transaction): array
@@ -48,10 +54,16 @@ class TransactionsExport implements FromCollection, WithHeadings, WithMapping
             $transaction->email,
             $transaction->address,
             $transaction->postalcode,
+            $transaction->zip,
             $transaction->city,
+            $transaction->group,
             $transaction->province,
             $transaction->country,
             $transaction->description,
+            $transaction->email_access,
+            $transaction->sms_access,
+            $transaction->email_gateway,
+            $transaction->sms_gateway,
         ];
     }
 }
