@@ -2,11 +2,11 @@
 @section('content')
 <div class="container-fluid" id="pcont">
         <div class="page-head">
-            <h2>Edit Client</h2>
+            <h2>Edit Group Client</h2>
             <ol class="breadcrumb">
                 <li><a href="index.php">Home</a></li>
-                <li><a href="all-groups.php">All Client</a></li>
-                <li class="active">Edit Client</li>
+                <li><a href="all-groups.php">All Group Client</a></li>
+                <li class="active">Edit Group Client</li>
             </ol>
         </div>
         <div class="cl-mcont">
@@ -16,59 +16,59 @@
                 <div class="col-sm-12 col-md-12">
                     <div class="block-flat">
                         <div class="header">
-                            <h3>Edit Client</h3>
+                            <h3>Edit Group Client</h3>
                         </div>
                         <div class="content">
 
 
-                            <form class="form-horizontal group-border-dashed"  parsley-validate novalidate action="{{route('update_client')}}" method="post">
+                            <form class="form-horizontal group-border-dashed"  parsley-validate novalidate action="{{route('update_group_client')}}" method="post">
                             @csrf
-                            <input type="hidden"  name="id" value="{{$transactions->id}}">
+                            <input type="hidden"  name="id" value="{{$clients->id}}">
                                 <div class="form-group">
                                     <label for="fname" class="col-sm-3 control-label">First Name</label>
                                     <div class="col-sm-7">
-                                        <input type="text"   class="form-control"  placeholder="First Name" name="first_name" value="{{$transactions->first_name}}">
+                                        <input type="text"   class="form-control"  placeholder="First Name" name="first_name" value="{{$clients->first_name}}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="fname" class="col-sm-3 control-label">Last Name</label>
                                     <div class="col-sm-7">
-                                        <input type="text"  class="form-control" id="lname" placeholder="Last Name" name="last_name" value="{{ $transactions->last_name }}">
+                                        <input type="text"  class="form-control" id="lname" placeholder="Last Name" name="last_name" value="{{ $clients->last_name }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="company" class="col-sm-3 control-label">Company</label>
                                     <div class="col-sm-7">
-                                        <input type="text"   class="form-control" id="company" placeholder="Company" name="company" value="{{ $transactions->company }}">
+                                        <input type="text"   class="form-control" id="company" placeholder="Company" name="company" value="{{ $clients->company }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="website" class="col-sm-3 control-label">Website</label>
                                     <div class="col-sm-7">
-                                        <input type="text" class="form-control" placeholder="Website" name="website" value="{{ $transactions->website }}">
+                                        <input type="text" class="form-control" placeholder="Website" name="website" value="{{ $clients->website }}">
                                     </div>
                                 </div>
     
                                 <div class="form-group">
                                     <label for="address" class="col-sm-3 control-label">Address</label>
                                     <div class="col-sm-7">
-                                        <input type="text"  class="form-control" id="address" placeholder="Address" name="address" value="{{ $transactions->address }}">
+                                        <input type="text"  class="form-control" id="address" placeholder="Address" name="address" value="{{ $clients->address }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="City" class="col-sm-3 control-label">City/Town</label>
                                     <div class="col-sm-7">
-                                        <input type="text"   class="form-control" id="city" placeholder="City/Town" name="city" value="{{ $transactions->city }}">
+                                        <input type="text"   class="form-control" id="city" placeholder="City/Town" name="city" value="{{ $clients->city }}">
                                     </div>
                                 </div>
                             
                                 <div class="form-group">
                                     <label for="Zip" class="col-sm-3 control-label">Zip Code</label>
                                     <div class="col-sm-7">
-                                        <input type="text"   class="form-control" id="zip" placeholder="Zip Code" name="zip" value="{{ $transactions->zip }}">
+                                        <input type="text"   class="form-control" id="zip" placeholder="Zip Code" name="zip" value="{{ $clients->zip }}">
                                     </div>
                                 </div>
 
@@ -77,7 +77,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Country</label>
                                     <div class="col-sm-6">
-                                        <select class="select2" name="country" value="{{ $transactions->country }}">
+                                        <select class="select2" name="country" value="{{ $clients->country }}">
                                             
 <option value="AF">Afghanistan</option>
 <option value="AX">Aland Islands</option>
@@ -332,18 +332,18 @@
                                 <div class="form-group">
                                     <label for="phone" class="col-sm-3 control-label">Phone</label>
                                     <div class="col-sm-7">
-                                        <input type="text"  class="form-control" id="phone" placeholder="Phone" name="number" value="{{ $transactions->number }}">
+                                        <input type="text"  class="form-control" id="phone" placeholder="Phone" name="number" value="{{ $clients->number }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="Email" class="col-sm-3 control-label">Email</label>
                                     <div class="col-sm-7">
-                                        <input type="email"  class="form-control" id="email" name="email" placeholder="Email" value="{{ $transactions->email }}">
+                                        <input type="email"  class="form-control" id="email" name="email" placeholder="Email" value="{{$clients->email }}">
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                               <div class="form-group">
                                     <label class="col-sm-3 control-label">Group</label>
                                     <div class="col-sm-6">
                                         @php
@@ -371,7 +371,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="email_access">Bulk Email</label>
                                     <div class="col-sm-6">
-                                        <select class="select2" name="email_access" value="{{ $transactions->email_access }}">
+                                        <select class="select2" name="email_access" value="{{ $clients->email_access }}">
                                             <option value="1" >Yes</option>
                                             <option value="0" >No</option>
 
@@ -382,7 +382,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label" for="sms_access">Bulk SMS</label>
                                     <div class="col-sm-6">
-                                        <select class="select2" name="sms_access" value="{{ $transactions->sms_access }}">
+                                        <select class="select2" name="sms_access" value="{{ $clients->sms_access }}">
                                             <option value="1" >Yes</option>
                                             <option value="0" >No</option>
 
@@ -404,7 +404,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Default Email Gateway</label>
                                     <div class="col-sm-6">
-                                        <select class="select2" name="email_gateway" value="{{ $transactions->email_gateway }}">
+                                        <select class="select2" name="email_gateway" value="{{ $clients->email_gateway }}">
                                             <option value="0">None</option>
                                             <option value="PHPMailer">PHPMailer</option>
                                             <option value="SendGrid">SendGrid</option>
@@ -415,7 +415,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-3 control-label">Default SMS Gateway</label>
                                     <div class="col-sm-6">
-                                        <select class="select2" name="sms_gateway" value="{{ $transactions->sms_gateway }}">
+                                        <select class="select2" name="sms_gateway" value="{{ $clients->sms_gateway }}">
                                             <option value="0">None</option>
                                             <option value="Twilio">Twilio</option>
                                             <option value="Clickatell">Clickatell</option>

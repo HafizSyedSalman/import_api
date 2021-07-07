@@ -90,21 +90,21 @@ class LoginController extends Controller
      
     // Login--Twitter
 
-    public function redirectToTwitter()
-    {
-        return Socialite::driver('twitter')->redirect();
-    }
+    // public function redirectToTwitter()
+    // {
+    //     return Socialite::driver('twitter')->redirect();
+    // }
 
     // Twitter--Callback
 
-    public function handleTwitterCallback()
-    {
-        $user=Socialite::driver('twitter')->user();
-         $this->registerOrLoginUser($user);
+    // public function handleTwitterCallback()
+    // {
+    //     $user=Socialite::driver('twitter')->user();
+    //      $this->registerOrLoginUser($user);
         
         //after login redirect to Home page
-        return redirect()->route('home');
-    }
+    //     return redirect()->route('home');
+    // }
 
 
     // Login--Github

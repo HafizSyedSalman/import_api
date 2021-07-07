@@ -13,6 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 // use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 // use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Illuminate\Validation\Rule;
+use DB;
 
 class ExcelController extends Controller
 {
@@ -29,8 +30,16 @@ class ExcelController extends Controller
     }
 
              public function importExcel(Request $request) {
-                 // $user_id = auth()->user()->id;        
+                 // $user_id = auth()->user()->id;       
+                 
                  Excel::import(new TransactionsImport, request()->file('import_file'));
+                  // return collect(head($data))
+                  //       ->each(function ($row, $key) {
+                  //       DB::table('transactions')
+                  //       ->where('email', $row['email'])
+                  //       ->update(array_except($row, ['email']));
+        //});
+
 
                  Session::put('success',  'Your file is imported successfully in database.');
                  return back();

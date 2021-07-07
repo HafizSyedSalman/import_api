@@ -8,11 +8,9 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\Importable;
 use Maatwebsite\Excel\Concerns\SkipsOnFailure;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
-use Maatwebsite\Excel\Concerns\SkipsOnError;
-use Maatwebsite\Excel\Concerns\SkipsErrors;
 use Illuminate\Validation\Rule;
 
-class TransactionsImport implements ToModel,WithValidation,SkipsOnFailure,SkipsOnError
+class TransactionsImport implements ToModel,WithValidation,SkipsOnFailure
 {
     use Importable, SkipsFailures;
     /**
@@ -64,9 +62,5 @@ public function customValidationMessages()
            
             
         ]);
-    }
-
-    public function onError(Throwable $error){
-
     }
 }

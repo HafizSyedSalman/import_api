@@ -38,14 +38,19 @@
                             <td>{{ $client_group->id }}</td>
                             <td>{{ $client_group->id }}</td>
                             <td>{{ $client_group->group }}  </td>
-                            <td>{{}} </td>
+                            @php
+                            $count = App\Models\Transaction::where('group',$client_group->id)->count();
+                            @endphp
+                            <td>
+                            <a href="{{route('group_client',$client_group->id)}}">{{$count}}</a> 
+                            </td>
                             
                             
                             <td>
-                                
+                            <a href="{{route('group_client',$client_group->id)}}"><i class="fa fa-eye" aria-hidden="true"></i></a>
                             <a href="{{route('edit_group',$client_group->id)}}"  class="btn btn-primary btn-xs" ><i class="fa fa-edit"></i>Edit </a>
                             <a href="{{route('delete',$client_group->id)}}"  class="btn btn-danger btn-xs" ><i class="fa fa-trash-o"></i>Delete </a>
-                            <!-- <a href=""><i class="fa fa-eye" aria-hidden="true"></i></a> -->
+                           
                             </td>
                         </tr>
                         @endforeach

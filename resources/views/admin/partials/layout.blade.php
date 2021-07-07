@@ -27,9 +27,16 @@
     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/jquery.easypiechart/jquery.easy-pie-chart.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/bootstrap.switch/bootstrap-switch.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/bootstrap.datetimepicker/css/bootstrap-datetimepicker.min.css')}}" />
+     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/jquery.select2/select2.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/jquery.select2/select2.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/bootstrap.slider/css/slider.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/intro.js/introjs.css')}}" />
+
+
+    <link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/fuelux/css/fuelux.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/fuelux/css/fuelux-responsive.min.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('views/assets/css/pygments.css')}}" />
+<link rel="stylesheet" type="text/css" href="{{asset('views/assets/js/redactor-js/redactor/redactor.css')}}"/>
 
     
     <!-- Custom styles for this template -->
@@ -58,7 +65,7 @@
                         <li><a href="profile-setting.php">Update Profile</a></li>
                         <li><a href="update-password.php">Update Password</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Logout</a></li>
+                        <li><a href="{{route('logout')}}">Logout</a></li>
                     </ul>
                 </li>
             </ul>
@@ -111,9 +118,9 @@
 
                     <li><a href="#"><i class="fa fa-envelope"></i><span>Bulk Email</span></a>
                         <ul class="sub-menu">
-                            <li ><a href="send-bulk-email.php">Send Bulk Email</a></li>
-                            <li  ><a href="send-email-from-file.php">Send Email From File</a></li>
-                            <li  ><a href="email-history.php">Email History</a></li>
+                            <li ><a href="{{route('send_bulkemail')}}">Send Bulk Email</a></li>
+                            <li  ><a href="{{route('send_emailfile')}}">Send Email From File</a></li>
+                            <li  ><a href="{{route('email_history')}}">Email History</a></li>
                             <li  ><a href="email-providers.php">Email Providers</a></li>
 
                     </ul>
@@ -145,7 +152,7 @@
                             <li ><a href="email-templates.php">Email Templates</a></li>
                     </ul>
                     </li>
-                    <li><a href="logout.php"><i class="fa fa-key"></i><span>Logout</span></a>
+                    <li><a href="{{route('logout')}}"><i class="fa fa-key"></i><span>Logout</span></a>
                         </ul>
 
                 </div>

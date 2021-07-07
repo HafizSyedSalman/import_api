@@ -36,7 +36,7 @@ class CreateTransactionsTbl extends Migration
             $table->string('email_gateway')->nullable();
             $table->string('sms_gateway')->nullable();
             $table->timestamps();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
         });

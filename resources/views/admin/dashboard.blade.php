@@ -18,12 +18,22 @@
                         <div class="content no-padding">
                             <div class="fact-data text-center">
                                 <h3>Clients</h3>
-                                <h2>0</h2>
+                                <h2>
+                                    @foreach ($transactions as $transactions)
+                         
+                                         @endforeach
+                            @php
+                            $count = App\Models\Transaction::where('id', $transactions->id)->count();
+                            @endphp
+                            {{ $count}}
+                                </h2>
                                 <h4><a href="all-clients.php"> View All</a></h4>
                             </div>
                             <div class="fact-data text-center">
                                 <h3>Groups</h3>
-                                <h2>0</h2>
+                                <h2>
+                                      
+                                </h2>
                                 <h4><a href="all-groups.php"> View All</a></h4>
                             </div>
                         </div>

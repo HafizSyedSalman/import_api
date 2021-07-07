@@ -79,10 +79,10 @@ Route::get('login/google/callback', [App\Http\Controllers\Auth\LoginController::
 Route::get('login/facebook', [App\Http\Controllers\Auth\LoginController::class, 'redirectToFacebook'])->name('login.facebook');
 Route::get('login/facebook/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleFacebookCallback']);
 
-//Login Twitter
+// //Login Twitter
 
-Route::get('login/twitter', [App\Http\Controllers\Auth\LoginController::class, 'redirectToTwitter'])->name('login.twitter');
-Route::get('login/twitter/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleTwitterCallback']);
+// Route::get('login/twitter', [App\Http\Controllers\Auth\LoginController::class, 'redirectToTwitter'])->name('login.twitter');
+// Route::get('login/twitter/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleTwitterCallback']);
 
 
 //Login GitHub
@@ -105,6 +105,9 @@ Route::post('sendEmail', [SendMailController::class, 'sendEmail'])->name('sendEm
 Route::get('sendEmailfile', [SendMailController::class, 'sendEmailfile'])->name('sendEmailfilet');
 Route::get('bulkemail', [SendMailController::class, 'bulkemailuser'])->name('bulkemail');
 Route::post('Bulkemailimport', [ExcelController::class, 'Bulkemailimport'])->name('Bulkemailimport');
+
+
+
 Auth::routes();
 // Admin Dashboard
 Route::get('dashboards', [DashboardController::class, 'dashboards'])->name('dashboards');
@@ -129,3 +132,15 @@ Route::get('all_group', [DashboardController::class, 'all_group'])->name('all_gr
 Route::get('edit_group/{id}', [DashboardController::class, 'edit_group'])->name('edit_group');
 Route::post('update_group', [DashboardController::class, 'update_group'])->name('update_group');
 Route::get('delete/{id}', [DashboardController::class, 'delete'])->name('delete');
+Route::get('group_client/{id}', [DashboardController::class, 'group_client'])->name('group_client');
+Route::get('edit_group_client/{id}', [DashboardController::class, 'edit_group_client'])->name('edit_group_client');
+Route::post('update_group_client', [DashboardController::class, 'update_group_client'])->name('update_group_client');
+Route::get('client_group_delete/{id}', [DashboardController::class, 'client_group_delete'])->name('client_group_delete');
+
+
+//Bulk Email 
+Route::get('send_bulkemail', [DashboardController::class, 'send_bulkemail'])->name('send_bulkemail');
+Route::get('send_emailfile', [DashboardController::class, 'send_emailfile'])->name('send_emailfile');
+Route::get('email_history', [DashboardController::class, 'email_history'])->name('email_history');
+
+
